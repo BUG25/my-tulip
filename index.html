@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi Tulipán</title>
+    <style>
+        /* Configuración para móviles */
+        body {
+            background-color: #1a1a1a; /* Fondo oscuro elegante */
+            color: #ffb7c5;           /* Color rosa tulipán */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Contenedor del Arte ASCII */
+        pre {
+            font-family: monospace;
+            font-size: 10px; /* Tamaño ajustado para pantalla de celular */
+            line-height: 1.2;
+            white-space: pre;
+            margin: 20px 0;
+            text-shadow: 0 0 10px rgba(255, 183, 197, 0.5);
+            animation: flicker 3s infinite alternate;
+        }
+
+        /* Animación de escritura para el título */
+        .typing-container {
+            font-family: monospace;
+            font-size: 6px; /* Muy pequeño para que el ASCII del título quepa */
+            white-space: pre;
+            overflow: hidden;
+            border-right: 3px solid #ffb7c5;
+            animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+            margin-bottom: 20px;
+        }
+
+        /* Animaciones */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #ffb7c5 }
+        }
+
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        /* Ajuste para pantallas extremadamente pequeñas */
+        @media (max-width: 320px) {
+            pre { font-size: 8px; }
+            .typing-container { font-size: 4px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="typing-container">
+ _ __   __ _ _ __ __ _ 
+| '_ \ / _` | '__/ _` |
+| |_) | (_| | | | (_| |
+| .__/ \__,_|_|  \__,_|
+| |                    
+|_|                    
+
+           _     
+          (_)    
+ _ __ ___  _     
+| '_ ` _ \| |    
+| | | | | | |    
+|_| |_| |_|_|    
+
+ _        _ _                 
+| |      | (_)                
+| |_ _   _| |_ _ __   __ _ _ __  
+| __| | | | | | '_ \ / _` | '_ \ 
+| |_| |_| | | | |_) | (_| | | | |
+ \__|\__,_|_|_| .__/ \__,_|_| |_|
+               | |              
+               |_|                          
+    </div>
+
+    <pre>
+         ;M";::;;
+        ,':;: ""'.
+       ,M;. ;MM;;M:
+       ;MMM::MMMMM:
+      ,MMMMM'MMMMM:
+      ;MMMMM MMMMMM
+      MMMMM::MMMMMM:
+      :MM:',;MMMMMM'
+      ':: 'MMMMMMM:
+        '; :MMMMM"
+           ''"""'
+            .
+            M
+            M
+.           M           .
+'M..        M        ,;M'
+ 'MM;.      M       ;MM:
+  :MMM.     M      ;MM:
+  'MMM;     M     :MMM:
+   MMMM.    M     MMMM:
+  :MMMM:    M     MMMM:
+  :MMMM:    M    :MMMM:
+  :MMMMM    M    ;MMMM:
+  'MMMMM;   M   ,MMMMM:
+   :MMMMM.  M   ;MMMMM'
+    :MMMM;  M  :MMMMM"
+     'MMMM  M  ;MMMM"
+-hrr- ':MM  M ,MMM:'
+        "": M :""'
+    </pre>
+
+</body>
+</html>
