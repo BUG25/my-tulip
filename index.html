@@ -15,17 +15,25 @@
             padding: 20px;
             min-height: 100vh;
             font-family: 'Courier New', Courier, monospace;
-            /* Permitimos scroll porque la carta es larga */
             overflow-y: auto; 
             overflow-x: hidden;
+            text-align: center; /* Centra el contenido */
         }
 
-        .ascii-container {
-            display: inline-block;
-            text-align: left;
+        /* Contenedor individual para cada bloque de palabra */
+        .ascii-word {
+            display: block; /* Cada palabra en su propia línea */
+            text-align: left; /* Mantiene la forma del ASCII interna */
             white-space: pre;
             font-family: 'Courier New', monospace;
+            font-size: 7px; /* Ajustado para que quepa bien en ancho móvil */
+            line-height: 1.2;
+            margin-bottom: 15px;
             opacity: 0;
+            /* Usamos margin auto para centrar el bloque inline-block */
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .fade-in-up {
@@ -43,59 +51,64 @@
             }
         }
 
-        .title-ascii {
-            font-size: 8px;
-            line-height: 1.2;
-            margin-bottom: 30px;
-        }
-
         pre#tulipan {
             font-size: 11px;
             line-height: 1.1;
-            margin: 0;
+            margin: 20px 0;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
-            animation-delay: 1s;
+            opacity: 0;
+            width: fit-content;
+            margin-left: auto;
+            margin-right: auto;
+            white-space: pre;
+            text-align: left;
         }
 
-        /* Estilo para tu carta */
         #mensaje-destinatario {
             margin-top: 30px;
             font-size: 16px;
             color: #ffffff;
-            text-align: center;
-            max-width: 90%; /* Más ancho para leer mejor en móvil */
+            max-width: 90%;
             line-height: 1.6;
             text-shadow: 0 0 5px #ffb7c5;
-            /* IMPORTANTE: esto respeta tus saltos de línea */
             white-space: pre-wrap; 
             padding-bottom: 50px;
         }
 
+        /* Delays para la transición suave de abajo hacia arriba */
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.5s; }
+        .delay-3 { animation-delay: 0.8s; }
+        .delay-tulipan { animation-delay: 1.5s; }
+
         @media (max-width: 360px) {
-            .title-ascii { font-size: 5px; }
+            .ascii-word { font-size: 5.5px; }
             pre#tulipan { font-size: 9px; }
-            #mensaje-destinatario { font-size: 14px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ascii-container title-ascii fade-in-up">
-    _ __   __ _ _ __ __ _ 
-    | '_ \ / _` | '__/ _` |
-    | |_) | (_| | | | (_| |
-    | .__/ \__,_|_|  \__,_|
-    | |                    
-    |_|                    
+    <div class="ascii-word fade-in-up delay-1">
+ _ __   __ _ _ __ __ _ 
+| '_ \ / _` | '__/ _` |
+| |_) | (_| | | | (_| |
+| .__/ \__,_|_|  \__,_|
+| |                    
+|_|                    
+    </div>
 
-                   _     
-                  (_)    
-         _ __ ___  _     
-        | '_ ` _ \| |    
-        | | | | | | |    
-        |_| |_| |_|_|    
+    <div class="ascii-word fade-in-up delay-2">
+           _     
+          (_)    
+ _ __ ___  _     
+| '_ ` _ \| |    
+| | | | | | |    
+|_| |_| |_|_|    
+    </div>
 
+    <div class="ascii-word fade-in-up delay-3">
  _        _ _                 
 | |      | (_)                
 | |_ _   _| |_ _ __   __ _ _ __  
@@ -103,10 +116,10 @@
 | |_| |_| | | | |_) | (_| | | | |
  \__|\__,_|_|_| .__/ \__,_|_| |_|
                | |              
-               |_|                          
+               |_|              
     </div>
 
-    <pre id="tulipan" class="ascii-container fade-in-up">
+    <pre id="tulipan" class="fade-in-up delay-tulipan">
          ;M";::;;
         ,':;: ""'.
        ,M;. ;MM;;M:
@@ -144,13 +157,12 @@
         const tulipan = document.getElementById('tulipan');
         const contenedorMensaje = document.getElementById('mensaje-destinatario');
         
-        // Usamos comillas invertidas (`) para permitir múltiples líneas de texto
         const textoParaMostrar = `Quiero que este tulipán sea recordatorio del amorsito que te tengo, y de que eres mi wawita piciosa.
-⋅───⊱༺ ୨♡୧ ༻⊰───⋅
+⋅───⊱༺ ୨ ⚘ ୧ ༻⊰───⋅
 Quiero que cada vez que te sientas sola, triste y estresada, veas este tulipán y te acuerdes de que aquí estaré siempre para ti. Porque me haces muy feliz, eres el amorcito de mi vida, y compartir tus penitas es aminorarlas.
 
 Quiero que cada vez que te sientas dichosa y muy feliz, veas este tulipán y te acuerdes de que siempre voy a querer escuchar una buena historia tuya, porque eres mi amorcito precioso, y compartir tu felicidad es hacerla mayor.
-⋅───⊱༺ ୨♡୧ ༻⊰───⋅
+⋅───⊱༺ ୨ ⚘ ୧ ༻⊰───⋅
 Te amo mucho mi amorcito, mi tulipancito.
 17/01/2025`;
 
@@ -158,7 +170,6 @@ Te amo mucho mi amorcito, mi tulipancito.
 
         tulipan.addEventListener('click', () => {
             if (escribiendo) return;
-            
             escribiendo = true;
             contenedorMensaje.innerHTML = "";
             let i = 0;
@@ -167,7 +178,6 @@ Te amo mucho mi amorcito, mi tulipancito.
                 if (i < textoParaMostrar.length) {
                     contenedorMensaje.innerHTML += textoParaMostrar.charAt(i);
                     i++;
-                    // Ajusté la velocidad a 40ms para que no sea tan lento leer todo el mensaje
                     setTimeout(escribir, 40); 
                 } else {
                     escribiendo = false;
