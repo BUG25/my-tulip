@@ -11,17 +11,18 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Centra el contenedor, no el texto interno */
+            align-items: center;
             padding: 20px;
             min-height: 100vh;
             font-family: 'Courier New', Courier, monospace;
+            /* Permitimos scroll porque la carta es larga */
+            overflow-y: auto; 
             overflow-x: hidden;
         }
 
-        /* Contenedor para asegurar que el ASCII no se deforme */
         .ascii-container {
             display: inline-block;
-            text-align: left; /* Mantiene la alineación interna del dibujo */
+            text-align: left;
             white-space: pre;
             font-family: 'Courier New', monospace;
             opacity: 0;
@@ -43,9 +44,9 @@
         }
 
         .title-ascii {
-            font-size: 8px; /* Un poco más grande para legibilidad */
+            font-size: 8px;
             line-height: 1.2;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
         pre#tulipan {
@@ -54,23 +55,27 @@
             margin: 0;
             cursor: pointer;
             -webkit-tap-highlight-color: transparent;
-            animation-delay: 1s; /* Aparece después del título */
+            animation-delay: 1s;
         }
 
+        /* Estilo para tu carta */
         #mensaje-destinatario {
             margin-top: 30px;
             font-size: 16px;
             color: #ffffff;
             text-align: center;
-            max-width: 300px;
-            min-height: 1.5em;
-            text-shadow: 0 0 8px #ffb7c5;
+            max-width: 90%; /* Más ancho para leer mejor en móvil */
+            line-height: 1.6;
+            text-shadow: 0 0 5px #ffb7c5;
+            /* IMPORTANTE: esto respeta tus saltos de línea */
+            white-space: pre-wrap; 
+            padding-bottom: 50px;
         }
 
-        /* Ajuste fino para celulares muy pequeños */
         @media (max-width: 360px) {
             .title-ascii { font-size: 5px; }
             pre#tulipan { font-size: 9px; }
+            #mensaje-destinatario { font-size: 14px; }
         }
     </style>
 </head>
@@ -139,15 +144,15 @@
         const tulipan = document.getElementById('tulipan');
         const contenedorMensaje = document.getElementById('mensaje-destinatario');
         
-        // Escribe aquí tu mensaje personalizado
+        // Usamos comillas invertidas (`) para permitir múltiples líneas de texto
         const textoParaMostrar = `Quiero que este tulipán sea recordatorio del amorsito que te tengo, y de que eres mi wawita piciosa.
-            ⋅───⊱༺ ୨ ⚘ ୧ ༻⊰───⋅
-            Quiero que cada vez que te sientas sola, triste y estresada, veas este tulipán y te acuerdes de que aquí estaré siempre para ti. Porque me haces muy feliz, eres el amorcito de mi vida, y compartir tus penitas es aminorarlas.
-            
-            Quiero que cada vez que te sientas dichosa y muy feliz, veas este tulipán y te acuerdes de que siempre voy a querer escuchar una buena historia tuya, porque eres mi amorcito precioso, y compartir tu felicidad es hacerla mayor.
-            ⋅───⊱༺ ୨ ⚘ ୧ ༻⊰───⋅
-            Te amo mucho mi amorcito, mi tulipancito.
-            17/01/2025`;
+⋅───⊱༺ ୨ ⚘ ୧ ༻⊰───⋅
+Quiero que cada vez que te sientas sola, triste y estresada, veas este tulipán y te acuerdes de que aquí estaré siempre para ti. Porque me haces muy feliz, eres el amorcito de mi vida, y compartir tus penitas es aminorarlas.
+
+Quiero que cada vez que te sientas dichosa y muy feliz, veas este tulipán y te acuerdes de que siempre voy a querer escuchar una buena historia tuya, porque eres mi amorcito precioso, y compartir tu felicidad es hacerla mayor.
+⋅───⊱༺ ୨ ⚘ ୧ ༻⊰───⋅
+Te amo mucho mi amorcito, mi tulipancito.
+17/01/2025`;
 
         let escribiendo = false;
 
@@ -162,7 +167,8 @@
                 if (i < textoParaMostrar.length) {
                     contenedorMensaje.innerHTML += textoParaMostrar.charAt(i);
                     i++;
-                    setTimeout(escribir, 50); // Velocidad tipo ChatGPT
+                    // Ajusté la velocidad a 40ms para que no sea tan lento leer todo el mensaje
+                    setTimeout(escribir, 40); 
                 } else {
                     escribiendo = false;
                 }
@@ -172,6 +178,3 @@
     </script>
 </body>
 </html>
-
-
-
