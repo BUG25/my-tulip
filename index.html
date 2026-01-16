@@ -11,24 +11,30 @@
             margin: 0;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            padding-top: 50px;
+            align-items: center; /* Centra el contenedor, no el texto interno */
+            padding: 20px;
             min-height: 100vh;
             font-family: 'Courier New', Courier, monospace;
             overflow-x: hidden;
-            text-align: center;
         }
 
-        /* Animación de entrada suave (Abajo hacia arriba) */
+        /* Contenedor para asegurar que el ASCII no se deforme */
+        .ascii-container {
+            display: inline-block;
+            text-align: left; /* Mantiene la alineación interna del dibujo */
+            white-space: pre;
+            font-family: 'Courier New', monospace;
+            opacity: 0;
+        }
+
         .fade-in-up {
             animation: fadeInUp 1.5s ease-out forwards;
-            opacity: 0;
         }
 
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(20px);
             }
             to {
                 opacity: 1;
@@ -36,53 +42,41 @@
             }
         }
 
-        /* Retraso para el tulipán */
-        .delay-1 {
-            animation-delay: 1.5s; /* Aparece justo después del título */
-        }
-
-        /* Título ASCII */
         .title-ascii {
-            font-size: 6px;
-            white-space: pre;
-            line-height: 1.1;
-            margin-bottom: 20px;
-        }
-
-        /* Tulipán */
-        pre#tulipan {
-            font-size: 10px;
+            font-size: 8px; /* Un poco más grande para legibilidad */
             line-height: 1.2;
-            cursor: pointer; /* Indica que se puede tocar */
-            transition: transform 0.3s ease;
+            margin-bottom: 40px;
+        }
+
+        pre#tulipan {
+            font-size: 11px;
+            line-height: 1.1;
+            margin: 0;
+            cursor: pointer;
             -webkit-tap-highlight-color: transparent;
+            animation-delay: 1s; /* Aparece después del título */
         }
 
-        pre#tulipan:active {
-            transform: scale(0.95); /* Efecto de pulsación al tocar */
-        }
-
-        /* Contenedor del mensaje oculto */
         #mensaje-destinatario {
             margin-top: 30px;
-            padding: 20px;
-            font-size: 18px;
-            max-width: 80%;
-            min-height: 50px;
-            line-height: 1.5;
+            font-size: 16px;
             color: #ffffff;
-            text-shadow: 0 0 5px #ffb7c5;
+            text-align: center;
+            max-width: 300px;
+            min-height: 1.5em;
+            text-shadow: 0 0 8px #ffb7c5;
         }
 
-        @media (max-width: 320px) {
-            .title-ascii { font-size: 4px; }
-            pre#tulipan { font-size: 8px; }
+        /* Ajuste fino para celulares muy pequeños */
+        @media (max-width: 360px) {
+            .title-ascii { font-size: 5px; }
+            pre#tulipan { font-size: 9px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="title-ascii fade-in-up">
+    <div class="ascii-container title-ascii fade-in-up">
  _ __   __ _ _ __ __ _ 
 | '_ \ / _` | '__/ _` |
 | |_) | (_| | | | (_| |
@@ -107,7 +101,7 @@
                |_|                          
     </div>
 
-    <pre id="tulipan" class="fade-in-up delay-1">
+    <pre id="tulipan" class="ascii-container fade-in-up">
          ;M";::;;
         ,':;: ""'.
        ,M;. ;MM;;M:
@@ -145,31 +139,29 @@
         const tulipan = document.getElementById('tulipan');
         const contenedorMensaje = document.getElementById('mensaje-destinatario');
         
-        // El mensaje que quieres que aparezca (puedes cambiarlo)
-        const textoParaMostrar = "Eres la persona más especial... Este tulipán es para recordarte lo mucho que brillas. (Toca de nuevo para reiniciar)";
+        // Escribe aquí tu mensaje personalizado
+        const textoParaMostrar = "Eres la persona más especial... Este tulipán es para recordarte lo mucho que brillas. ✨";
 
         let escribiendo = false;
 
         tulipan.addEventListener('click', () => {
-            if (escribiendo) return; // Evita que se solapen las animaciones
+            if (escribiendo) return;
             
             escribiendo = true;
-            contenedorMensaje.innerHTML = ""; // Limpiar antes de escribir
+            contenedorMensaje.innerHTML = "";
             let i = 0;
 
             function escribir() {
                 if (i < textoParaMostrar.length) {
                     contenedorMensaje.innerHTML += textoParaMostrar.charAt(i);
                     i++;
-                    setTimeout(escribir, 70); // Velocidad del tipeo (70ms por letra)
+                    setTimeout(escribir, 50); // Velocidad tipo ChatGPT
                 } else {
                     escribiendo = false;
                 }
             }
-
             escribir();
         });
     </script>
-
 </body>
 </html>
