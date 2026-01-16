@@ -22,15 +22,14 @@
 
         /* Contenedor individual para cada bloque de palabra */
         .ascii-word {
-            display: block; /* Cada palabra en su propia línea */
-            text-align: left; /* Mantiene la forma del ASCII interna */
+            display: block;
+            text-align: left;
             white-space: pre;
             font-family: 'Courier New', monospace;
-            font-size: 7px; /* Ajustado para que quepa bien en ancho móvil */
-            line-height: 1.2;
-            margin-bottom: 15px;
+            font-size: 7px;
+            line-height: 1;      /* Reducimos el interlineado interno */
+            margin-bottom: 0px;  /* Cambia esto a 0 o a un número negativo si quieres más cercanía */
             opacity: 0;
-            /* Usamos margin auto para centrar el bloque inline-block */
             width: fit-content;
             margin-left: auto;
             margin-right: auto;
@@ -90,23 +89,19 @@
 </head>
 <body>
 
-    <div class="ascii-word fade-in-up delay-1">
- _ __   __ _ _ __ __ _ 
+    <div class="ascii-word fade-in-up delay-1"> _ __   __ _ _ __ __ _ 
 | '_ \ / _` | '__/ _` |
 | |_) | (_| | | | (_| |
 | .__/ \__,_|_|  \__,_|
 | |                    
-|_|                    
-    </div>
+|_|                    </div>
 
-    <div class="ascii-word fade-in-up delay-2">
-           _     
+    <div class="ascii-word fade-in-up delay-2">           _     
           (_)    
  _ __ ___  _     
 | '_ ` _ \| |    
 | | | | | | |    
-|_| |_| |_|_|    
-    </div>
+|_| |_| |_|_|    </div>
 
     <div class="ascii-word fade-in-up delay-3">
  _        _ _                 
